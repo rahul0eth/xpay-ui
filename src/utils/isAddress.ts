@@ -1,0 +1,1 @@
+export { isAddress } from "../resources";

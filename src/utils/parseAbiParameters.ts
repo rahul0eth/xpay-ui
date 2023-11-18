@@ -1,0 +1,1 @@
+export { parseAbiParameters } from "../resources";
