@@ -157,9 +157,7 @@ export default function Home() {
 				<span className="mt-8 text-lg font-bold text-primary-100">
 					Deploy a contract with xSafe:
 				</span>
-				<span>
-					Pay once, execute everywhere.
-				</span>
+				<span>Pay once, execute everywhere.</span>
 				<span className="mb-2 mt-5 font-bold text-light-100">
 					Creation Code
 				</span>
