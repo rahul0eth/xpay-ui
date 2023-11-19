@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Quote } from "../interfaces";
 import store from "../state/store";
 
@@ -56,7 +57,8 @@ class GodServiceClient {
 		signature: string,
 		messageHash: string,
 		godBaseUrl: string,
-		setSuccessMessage: (value: string) => void
+		setSuccessMessage: (value: string) => void,
+		setResponseData: (value: Record<number, string>) => void
 	) => {
 		// setIsLoading(true);
 		if (godBaseUrl === "") {
@@ -67,7 +69,6 @@ class GodServiceClient {
 		try {
 			setSuccessMessage("");
 			const principal = store.getState().wallet.address;
-
 			const myHeaders = new Headers();
 			myHeaders.append("Content-Type", "application/json");
 
@@ -88,6 +89,9 @@ class GodServiceClient {
 			const response = await fetch(`${godBaseUrl}/work`, requestOptions);
 
 			if (response.ok) {
+				const data = await response.json();
+				console.log("\n\nresponse data: ", JSON.stringify(data));
+				setResponseData(data);
 				setSuccessfulPayment(false);
 				setSuccessfulSubmission(true);
 				setIsLoading(false);

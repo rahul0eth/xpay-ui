@@ -21,6 +21,10 @@ export default function Home() {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const [successMessage, setSuccessMessage] = useState<string>("");
+	const [responseData, setResponseData] = useState<Record<
+		number,
+		string
+	> | null>(null);
 	const [bytecode, setBytecode] = useState<string>("");
 	const [chainIdListInput, setChainIdLisInput] = useState<string>("");
 	const [chainIdList, setChainIdList] = useState<number[] | null>(null);
@@ -84,7 +88,8 @@ export default function Home() {
 			signature,
 			messageHash,
 			godBaseUrl,
-			setSuccessMessage
+			setSuccessMessage,
+			setResponseData
 		);
 	};
 
@@ -315,6 +320,24 @@ export default function Home() {
 						<span className="break-all text-good-accent">
 							{successMessage}
 						</span>
+					</div>
+				)}
+				{responseData && (
+					<div className="mt-5 flex w-full flex-col items-start justify-center text-sm">
+						<div className="mt-4" />
+						{Object.entries(responseData).map(([key, value]) => (
+							<a
+								key={key}
+								href={`${getChain({ chainId: Number(key) })
+									?.blockExplorer}/tx/${value}#eventlog`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="mb-5 break-all text-light-400 outline-none hover:text-primary-100"
+							>
+								{`${getChain({ chainId: Number(key) })
+									?.name}: ${value}`}
+							</a>
+						))}
 					</div>
 				)}
 				<input
