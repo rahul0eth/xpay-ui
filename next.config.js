@@ -23,7 +23,7 @@ module.exports = withPWA({
 		WC_PROJECT_ID: process.env.WC_PROJECT_ID,
 
 		// ********* PUBLIC ********* //
-		GITHUB_URL: "https://github.com/chainrule-labs/xpay-contracts",
+		GITHUB_URL: "https://github.com/rahul0eth/xpay-contracts/",
 		TWITTER_URL: "https://twitter.com/chainrule_io",
 	},
 });
